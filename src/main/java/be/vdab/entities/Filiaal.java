@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import be.vdab.valueobjects.Adres;
 
 public class Filiaal implements Serializable {
+
+
 	private static final long serialVersionUID = 1L;
 	private long id;
 	private String naam;
@@ -30,6 +32,14 @@ public class Filiaal implements Serializable {
 		this.id = id;
 	}
 
+	public long getId() {
+		return id;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getNaam() {
 		return naam;
