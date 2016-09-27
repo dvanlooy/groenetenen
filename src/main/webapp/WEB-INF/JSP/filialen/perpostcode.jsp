@@ -16,9 +16,9 @@
 		<form:label path='vanpostcode'>Van:<form:errors path='vanpostcode'/></form:label>
 		<form:input path='vanpostcode' autofocus='autofocus' />
 		<form:label path='totpostcode'>Tot:<form:errors path='totpostcode'/></form:label>
-		<form:input path='totpostcode' />
+		<form:input path='totpostcode' required='required' type='number' />
 		<input type='submit' value='Zoeken'>
-		<form:errors path='vanpostcode'/>
+		<label><form:errors path='vanpostcode'/></label>
 		<form:errors path='totpostcode'/>
 		<form:errors cssClass='fout'/>
 	</form:form>
