@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.Valid;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
@@ -32,7 +33,7 @@ import be.vdab.valueobjects.Adres;
 public class Filiaal implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -54,8 +55,11 @@ public class Filiaal implements Serializable {
 	private Adres adres;
 	@OneToMany(mappedBy = "filiaal")
 	private Set<Werknemer> werknemers;
-	
-	public Filiaal() {}
+	@Version
+	private long versie;
+
+	public Filiaal() {
+	}
 
 	public Filiaal(String naam, boolean hoofdFiliaal, BigDecimal waardeGebouw, LocalDate inGebruikName, Adres adres) {
 		this.naam = naam;
@@ -65,7 +69,6 @@ public class Filiaal implements Serializable {
 		this.adres = adres;
 	}
 
-	
 	public Filiaal(long id, String naam, boolean hoofdFiliaal, BigDecimal waardeGebouw, LocalDate inGebruikName,
 			Adres adres) {
 		this(naam, hoofdFiliaal, waardeGebouw, inGebruikName, adres);
@@ -76,7 +79,6 @@ public class Filiaal implements Serializable {
 		return id;
 	}
 
-
 	public void setId(long id) {
 		this.id = id;
 	}
@@ -85,51 +87,42 @@ public class Filiaal implements Serializable {
 		return naam;
 	}
 
-
 	public void setNaam(String naam) {
 		this.naam = naam;
 	}
-
 
 	public boolean isHoofdFiliaal() {
 		return hoofdFiliaal;
 	}
 
-
 	public void setHoofdFiliaal(boolean hoofdFiliaal) {
 		this.hoofdFiliaal = hoofdFiliaal;
 	}
-
 
 	public BigDecimal getWaardeGebouw() {
 		return waardeGebouw;
 	}
 
-
 	public void setWaardeGebouw(BigDecimal waardeGebouw) {
 		this.waardeGebouw = waardeGebouw;
 	}
-
 
 	public LocalDate getInGebruikName() {
 		return inGebruikName;
 	}
 
-
 	public void setInGebruikName(LocalDate inGebruikName) {
 		this.inGebruikName = inGebruikName;
 	}
-
 
 	public Adres getAdres() {
 		return adres;
 	}
 
-
 	public void setAdres(Adres adres) {
 		this.adres = adres;
 	}
-	
+
 	public Set<Werknemer> getWerknemers() {
 		return Collections.unmodifiableSet(werknemers);
 	}
@@ -139,6 +132,5 @@ public class Filiaal implements Serializable {
 		return "Filiaal [id=" + id + ", naam=" + naam + ", hoofdFiliaal=" + hoofdFiliaal + ", waardeGebouw="
 				+ waardeGebouw + ", inGebruikName=" + inGebruikName + ", adres=" + adres + "]";
 	}
-	
-	
+
 }
