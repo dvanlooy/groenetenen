@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.http.MediaType;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -23,7 +24,7 @@ import be.vdab.valueobjects.PostcodeReeks;
 
 // enkele imports ...
 @Controller
-@RequestMapping("/filialen")
+@RequestMapping(path = "/filialen", produces = MediaType.TEXT_HTML_VALUE)
 class FiliaalController {
 	private static final String FILIALEN_VIEW = "filialen/filialen";
 	private static final String TOEVOEGEN_VIEW = "filialen/toevoegen";
