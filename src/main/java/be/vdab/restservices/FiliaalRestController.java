@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.validation.Valid;
 
 import org.springframework.hateoas.EntityLinks;
+import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.hateoas.Link;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -31,6 +32,7 @@ import be.vdab.services.FiliaalService;
 
 @RestController
 @RequestMapping("/filialen")
+@ExposesResourceFor(Filiaal.class)
 class FiliaalRestController {
 	private final FiliaalService filiaalService;
 	private final EntityLinks entityLinks;
@@ -111,5 +113,11 @@ class FiliaalRestController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAllow(allowedMethods);
 		return headers;
+	}
+
+	// ALL
+	@GetMapping
+	FilialenResource findAll() {
+		return new FilialenResource(filiaalService.findAll(), entityLinks);
 	}
 }
