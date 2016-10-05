@@ -35,13 +35,13 @@ class MailSenderImpl implements MailSender {
 	}
 
 	@Override
-	public void nieuwFiliaalMail(Filiaal filiaal) {
+	public void nieuwFiliaalMail(Filiaal filiaal, String urlFiliaal) {
 		try {
 			MimeMessage message = sender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message);
 			helper.setTo(webmaster);
 			helper.setSubject("Nieuw filiaal");
-			helper.setText(String.format("Filiaal <strong>%s</strong> is toegevoegd", filiaal.getNaam()), true);
+			helper.setText(String.format("Je kan het nieuwe filiaal <strong>%s</strong> " +	"<a href='%s/wijzigen'>hier</a> nazien", filiaal.getNaam(), urlFiliaal), true);
 			sender.send(message);
 		} catch (Exception ex) {
 			LOGGER.log(Level.SEVERE, "kan mail nieuw filiaal niet versturen", ex);

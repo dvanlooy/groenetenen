@@ -7,7 +7,7 @@ import be.vdab.entities.Filiaal;
 import be.vdab.valueobjects.PostcodeReeks;
 
 public interface FiliaalService {
-	void create(Filiaal filiaal);
+	void create(Filiaal filiaal, String urlAlleFilialen);
 
 	Optional<Filiaal> read(long id);
 
