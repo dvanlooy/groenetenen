@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import be.vdab.entities.Filiaal;
 import be.vdab.exceptions.FiliaalHeeftNogWerknemersException;
@@ -84,5 +85,11 @@ class FiliaalServiceImpl implements FiliaalService {
 	@Override
 	public List<Filiaal> findByPostcodeReeks(PostcodeReeks reeks) {
 		return filiaalRepository.findByAdresPostcodeBetweenOrderByNaam(reeks.getVanpostcode(), reeks.getTotpostcode());
+	}
+	
+	@Override
+	@Scheduled(/*cron = "0 0 1 * * *"*/ fixedRate=60000) // test = om de minuut
+	public void aantalFilialenMail() {
+	mailSender.aantalFilialenMail(filiaalRepository.count());
 	}
 }

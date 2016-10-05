@@ -8,10 +8,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 @Configuration
 @ComponentScan
 @PropertySource("classpath:/mail.properties")
+@EnableAsync
 public class MailConfig {
 	@Bean
 	static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
