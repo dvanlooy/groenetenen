@@ -90,6 +90,6 @@ class FiliaalServiceImpl implements FiliaalService {
 	@Override
 	@Scheduled(/*cron = "0 0 1 * * *"*/ fixedRate=60000) // test = om de minuut
 	public void aantalFilialenMail() {
-	mailSender.aantalFilialenMail(filiaalRepository.count());
+//	mailSender.aantalFilialenMail(filiaalRepository.count()); //effe genoeg mails gezien
 	}
 }
