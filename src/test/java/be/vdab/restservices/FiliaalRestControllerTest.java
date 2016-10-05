@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -19,6 +20,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.context.WebApplicationContext;
 
 import be.vdab.datasource.TestDataSourceConfig;
@@ -76,7 +78,7 @@ public class FiliaalRestControllerTest {
 //		String nieuwCorrectFiliaal = FileCopyUtils.copyToString(
 //				new InputStreamReader(context.getResource("classpath:nieuwCorrectFiliaal.xml").getInputStream()));
 //		mvc.perform(post("/filialen").contentType(MediaType.APPLICATION_XML).content(nieuwCorrectFiliaal))
-//				.andExpect(status().isCreated());
+//		.andExpect(status().isCreated());
 //	}
 
 //	@Test
