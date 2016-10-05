@@ -1,5 +1,6 @@
 package be.vdab.services;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +50,19 @@ class FiliaalServiceImpl implements FiliaalService {
 				throw new FiliaalHeeftNogWerknemersException();
 			}
 			filiaalRepository.delete(id);
+		}
+	}
+
+	@Override
+	public List<Filiaal> findNietAfgeschreven() {
+		return filiaalRepository.findByWaardeGebouwNot(BigDecimal.ZERO);
+	}
+
+	@Override
+	@ModifyingTransactionalServiceMethod
+	public void afschrijven(Iterable<Filiaal> filialen) {
+		for (Filiaal filiaal : filialen) {
+			filiaal.afschrijven();
 		}
 	}
 

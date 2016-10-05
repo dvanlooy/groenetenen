@@ -153,4 +153,24 @@ class FiliaalController {
 		}
 		return modelAndView;
 	}
+
+	private static final String AFSCHRIJVEN_VIEW = "filialen/afschrijven";
+
+	@GetMapping("afschrijven")
+	ModelAndView afschrijvenForm() {
+		return new ModelAndView(AFSCHRIJVEN_VIEW, "filialen", filiaalService.findNietAfgeschreven())
+				.addObject(new AfschrijvenForm());
+	}
+
+	private static final String REDIRECT_NA_AFSCHRIJVEN = "redirect:/";
+
+	@PostMapping("afschrijven")
+	ModelAndView afschrijven(@Valid AfschrijvenForm afschrijvenForm, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) { // als de gebruiker geen filiaal
+											// selecteerde
+			return new ModelAndView(AFSCHRIJVEN_VIEW, "filialen", filiaalService.findNietAfgeschreven());
+		}
+		filiaalService.afschrijven(afschrijvenForm.getFilialen());
+		return new ModelAndView(REDIRECT_NA_AFSCHRIJVEN);
+	}
 }
