@@ -1,13 +1,10 @@
 package be.vdab.restservices;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
 
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -22,12 +19,12 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.context.WebApplicationContext;
 
 import be.vdab.datasource.TestDataSourceConfig;
 import be.vdab.entities.Filiaal;
 import be.vdab.repositories.TestRepositoriesConfig;
+import be.vdab.restclients.RestClientsConfig;
 import be.vdab.services.FiliaalService;
 import be.vdab.services.ServicesConfig;
 import be.vdab.valueobjects.Adres;
@@ -36,7 +33,7 @@ import be.vdab.web.ControllersConfig;
 // enkele andere imports
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = { TestDataSourceConfig.class, TestRepositoriesConfig.class, ServicesConfig.class,
-		ControllersConfig.class, RestControllersConfig.class })
+		ControllersConfig.class, RestControllersConfig.class, RestClientsConfig.class })
 @WebAppConfiguration
 @Transactional
 public class FiliaalRestControllerTest {
