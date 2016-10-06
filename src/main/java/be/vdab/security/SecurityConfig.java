@@ -48,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.usersByUsernameQuery(USERS_BY_USERNAME) //wanneer afwijkende tabelstructuur voor principals en authorization
 		.authoritiesByUsernameQuery(AUTHORITIES_BY_USERNAME) //wanneer afwijkende tabelstructuur voor principals en authorization
 		.passwordEncoder(new BCryptPasswordEncoder()); 
+		
 	}
 
 	@Override
@@ -68,9 +69,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.hasAuthority(MANAGER)
 				.antMatchers("/werknemers")
 				.hasAnyAuthority(MAGAZIJNIER, HELPDESKMEDEWERKER)
+				.antMatchers(HttpMethod.PUT, "/filialen/*").hasAuthority(MANAGER) //REST security
+				.antMatchers(HttpMethod.DELETE, "/filialen/*").hasAuthority(MANAGER) //REST security
 				.antMatchers("/", "/login", "/loggedout").permitAll()
 				.antMatchers("/**").authenticated()
 				.and()
 				.exceptionHandling().accessDeniedPage("/WEB-INF/JSP/forbidden.jsp");
+		http.httpBasic();
 	}
 }
