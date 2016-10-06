@@ -8,6 +8,7 @@
 </head>
 <body>
 	<v:menu />
+	<c:if test="${param.logout != null }"><h2>Succesvol afgemeld</h2></c:if>
 	<h1>Groene tenen</h1>
 	<blockquote>De aanleg van een gezellig gazon</blockquote>
 	<c:set var='foto' value='${empty foto ? "ochtend" : foto}' />
